@@ -1,0 +1,21 @@
+{
+    "name": "troisyaourts/planning",
+    "description": "Planning classes",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ju",
+            "email": "julien@troisyaourts.com"
+        }
+    ],
+    "require": {},
+    "autoload":{
+        "psr-0":{
+            "" : "classes"
+        }
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^0.12.32"
+    }
+}
