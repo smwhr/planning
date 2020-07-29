@@ -2,19 +2,19 @@
 
 namespace Literal;
 
-class Number implements Numeric{
+class Infinity implements Numeric{
   private $number;
 
-  public function __construct($number){
-    $this->number = $number;
+  public function __construct(){
+    $this->number = INF;
   }
 
   public function asString():string{
-    return str($this->number);
+    return "Infinity";
   }
 
   public function asInt():int{
-    return intval($this->number);
+    return INF;
   }
   public function asFloat():float{
     return floatval($this->number);

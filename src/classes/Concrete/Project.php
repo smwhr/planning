@@ -12,7 +12,7 @@ class Project{
 
   public function __construct(... $args){
 
-    \polymorph_check([
+    \Polymorph\check([
       ["has_atmost1", \Literal\Name::class],
       ["has_atmost1", \KickOff::class],
       ["has_atmost1", \Deadline::class]
@@ -33,12 +33,10 @@ class Project{
           $this->steps[] = $arg;
           break;
         case $arg instanceof \Estimated:
-          assert($arg->object() instanceof Step);
           assert(in_array($arg->object(), $this->steps, true));
           $this->estimates[] = $arg;
           break;
         case $arg instanceof \Assigned:
-          assert($arg->object() instanceof Step);
           assert(in_array($arg->object(), $this->steps, true));
           $this->assignments[] = $arg;
           break;
@@ -54,9 +52,14 @@ class Project{
   }
 
   public function brutCost():\Cost{
-    return new \Concrete\Cost(new \Literal\SumOfNumber(... array_map(function(Estimated $estimate){
-      return $estimate->number();
-    }, $this->estimates)));
+    return new \Concrete\Cost(
+                new \Literal\SumOfNumber(
+                  ... array_map(
+                        function(Estimated $estimate, Assigned $assignment):\Literal\Number{
+                          return $estimate->number((fn($x) => $x));
+                        }, $this->estimates, $this->assignments)
+                )
+              );
   }
 
 }

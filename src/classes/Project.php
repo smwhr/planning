@@ -1,9 +1,9 @@
 <?php
 
-interface Project extends Estimable{
+interface Project extends Estimable, Assignable{
   public function name():\Literal\Name;
-  public function steps():\Date;
-  public function end():\Date;
+  public function steps():\Literal\Date;
+  public function end():\Literal\Date;
 
 
   public function brutDuration():\Literal\Numeric;

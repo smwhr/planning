@@ -7,7 +7,7 @@ class Step implements \Step{
 
   public function __construct(... $args){
     
-    \polymorph_check([
+    \Polymorph\check([
       ["has_1", \Literal\Name::class]
     ], ... $args);
 

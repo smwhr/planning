@@ -7,7 +7,7 @@ class Estimated implements \Estimated{
   private $estimate;
 
   public function __construct(... $args){
-    \polymorph_check([
+    \Polymorph\check([
       ["has_1", \Estimate::class],
       ["has_1", \Estimable::class]
     ], ... $args);
@@ -24,15 +24,18 @@ class Estimated implements \Estimated{
     });
   }
 
-  public function number():\Literal\Number{
-    return $this->estimate->number();
+  public function object(\Closure $cb){
+    return $cb->bind(null, $this->_object())($this->_object());
+  }
+  public function estimate(\Closure $cb){
+    return $cb->bind(null, $this->_estimate())($this->_estimate());
   }
 
-  public function estimate():\Estimate{
+  private function _estimate():\Estimate{
     return $this->estimate;
   }
 
-  public function object():\Estimable{
+  private function _object():\Estimable{
     return $this->object;
   }
 }

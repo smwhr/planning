@@ -7,7 +7,7 @@ class Assigned implements \Assigned{
   private $person;
 
   public function __construct(... $args){
-    \polymorph_check([
+    \Polymorph\check([
       ["has_1", \Person::class],
       ["has_1", \Assignable::class]
     ], ... $args);
@@ -24,11 +24,19 @@ class Assigned implements \Assigned{
     });
   }
 
-  public function person():\Person{
+
+  public function object(\Closure $cb){
+    return $cb->bind($this)($this->_object());
+  }
+  public function person(\Closure $cb){
+    return $cb->bind($this)($this->_person());
+  }
+
+  private function _person():\Person{
     return $this->person;
   }
 
-  public function object():\Assignable{
+  private function _object():\Estimable{
     return $this->object;
   }
 }

@@ -6,7 +6,7 @@ class Estimate implements \Estimate{
 
   public function __construct(... $args){
 
-    \polymorph_check([
+    \Polymorph\check([
       ["has_1", \Literal\Numeric::class],
       ["all_are", \Literal\Numeric::class],
     ], ... $args);
@@ -20,7 +20,8 @@ class Estimate implements \Estimate{
     });
   }
 
-  public function number():\Literal\Numeric{
-    return $this->number;
+  public function number(\Closure $cb){
+    return $cb->bindTo(null, $this->number)($this->number);
   }
+
 }
