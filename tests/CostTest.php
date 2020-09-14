@@ -72,22 +72,16 @@ final class CostTest extends TestCase{
 
         $sumof = new \TypeClass\SumOf(\Concrete\Cost::class, $cost1, $cost2, $cost3);
 
-        echo "\====== before total =======\n";
 
         $costs = $sumof->total(); //extract concrete type total
 
-        echo "\====== after total =======\n";
         $this->assertInstanceOf(
           Cost::class, $costs
         );
 
-        echo "\====== before compute =======\n";
-        $number = $costs->total()->asInt();
-        var_dump($number);
-        // $this->assertEquals(
-        //   $costs->total()->asInt(), 
-        //   9
-        // );
-        echo "\====== after compute =======\n";
+        $this->assertEquals(
+          $costs->total()->asInt(), 
+          9
+        );
     }
 }

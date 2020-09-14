@@ -5,6 +5,7 @@ namespace TypeClass;
 class SumOf implements \Sum, \Sumable{
 
   private $concrete_type;
+  private $operands;
 
   public function __construct($concrete_type, ... $args){
       $this->concrete_type = $concrete_type;
